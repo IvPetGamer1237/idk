@@ -7,7 +7,7 @@ clear
 for (( ; ; ))
 do
 	dir = `pwd`
-	echo "["$user"]["$host"]["$dir"]"
+	echo -n "["$user"]["$host"]["$dir"]"
 	read -er command
 	$command
 done
