@@ -2,7 +2,7 @@
 ## this is a testing scripts
 ### about C/graphical.c
 
-this is just a gui program written on c using gtk 3
+this is just a gui program written on C using gtk 3
 
 **compiling C/graphical.c:**  
 ```bash
