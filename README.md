@@ -8,4 +8,4 @@ gcc -o graphical graphical.c $(pkg-config --cflags --libs gtk+-3.0)
 ### about bashscripts/fakeshell.sh
 this is a very simple bash script
 
-this scripe answer you `username` and `hostname` and imitates bash
+this script asks for your `username` and `hostname`, and then simulates bash.
