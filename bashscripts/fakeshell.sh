@@ -6,8 +6,8 @@ read -er host
 clear
 for (( ; ; ))
 do
-	dir = `pwd`
-	echo -n "["$user"]["$host"]["$dir"]"
+	dir=$(pwd)
+	echo -n "[$user@$host $dir]\$ "
 	read -er command
 	$command
 done
