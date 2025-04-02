@@ -31,6 +31,8 @@ this script asks for your `username` and `hostname`, and then simulates bash.
 
 this script changes `vim` command to random `vim`/`emacs -nw` command
 
+`emacs -nw` to `vim`/`emacs -nw` command
+
 `gvim` to `gvim`/`emacs` command
 
-`emacs -nw` to `vim`/`emacs -nw` command
+`emacs` to `gvim`/`emacs` command
