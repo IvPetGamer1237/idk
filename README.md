@@ -19,6 +19,8 @@ if random number matched with your then exits
 
 else adds 1 to your score
 
+Make sure to report any bugs to /dev/null
+
 ---
 ### about bashscripts/fakeshell.sh
 this is a very simple bash script
