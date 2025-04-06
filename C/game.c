@@ -14,19 +14,23 @@ int start(void) {
 }
 int game(void) {
     srand(time(0));
-    char in[10];
+    char in[11];
     int num, rnd;
 
     while(true) {
         printf("Choose (1-3): ");
-        scanf("%s", in);
+        scanf("%10s", in);
 
         if (strcmp(in, "q") == 0 || strcmp(in, "exit") == 0) {
             printf("exit\n");
             break;
         };
+        if (strcmp(in, "bugreport") == 0) {
+            printf("Make sure to report any bugs to /dev/null\n");
+            continue;
+        };
         if (sscanf(in, "%d", &num) != 1) {
-            printf("Input is not a number or 'q'\\'exit'\n");
+            printf("Input is not a number or 'q'\\'exit' or 'bugreport'\n");
             continue;
         };
 
