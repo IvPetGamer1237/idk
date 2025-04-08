@@ -27,6 +27,11 @@ int game(void) {
             printf("Make sure to report any bugs to /dev/null\n");
             continue;
         };
+        if (strcmp(in, "segfault") == 0) {
+            printf("You found a secret!\n");
+            int *ptr = NULL;
+            *ptr = 1;
+        };
         if (sscanf(in, "%d", &num) != 1) {
             printf("Input is not a number or 'q'\\'exit' or 'bugreport'\n");
             continue;
