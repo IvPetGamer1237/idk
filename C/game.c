@@ -5,10 +5,7 @@
 #include <ctype.h>
 #include <stdbool.h>
 
-int scr=0;
-
 int start(void) {
-    srand(time(0));
     printf("write 'q' or 'exit' for exit\n\n");
     return 0;
 }
@@ -16,6 +13,7 @@ int game(void) {
     srand(time(0));
     char in[11];
     int num, rnd;
+    int scr=0;
 
     while(true) {
         printf("Choose (1-3): ");
