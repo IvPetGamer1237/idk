@@ -16,43 +16,44 @@ int game(void) {
     int scr=0;
 
     while(true) {
-        printf("Choose (1-3): ");
+        printf("%d choose (1-3): ", scr);
         scanf("%10s", in);
 
         if (strcmp(in, "q") == 0 || strcmp(in, "exit") == 0) {
             printf("exit\n");
             break;
-        };
+        }
         if (strcmp(in, "bugreport") == 0) {
             printf("Make sure to report any bugs to /dev/null\n");
             continue;
-        };
+        }
         if (strcmp(in, "segfault") == 0) {
             printf("You found a secret!\n");
             int *ptr = NULL;
             *ptr = 1;
-        };
+        }
         if (sscanf(in, "%d", &num) != 1) {
             printf("Input is not a number or 'q'\\'exit' or 'bugreport'\n");
             continue;
-        };
+        }
 
         if (num < 1 || num > 3) {
             printf("Value out of range!\n");
             continue;
-        };
+        }
 
         rnd = rand() % 3 + 1;
         
         if (num == rnd) {
             printf("Game over!\n");
-            break;
+            scr=0;
+            printf("Your score is reset!\n");
         }else{
             scr++;
             printf("Your score is %d!\n", scr);
-        };
+        }
 
-    };
+    }
     return 0;
 }
 
