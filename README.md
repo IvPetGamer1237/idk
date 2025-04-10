@@ -1,14 +1,6 @@
 # README.md in my repository named `idk`
 ## this my projects
 ### about C/graphical.c
-
-this is just a gui program written on C using gtk 3
-
-**compiling C/graphical.c:**  
-```bash
-gcc -o graphical graphical.c $(pkg-config --cflags --libs gtk+-3.0)
-```
----
 ### about C/game.c
 
 this is a game
