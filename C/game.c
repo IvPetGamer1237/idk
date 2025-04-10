@@ -9,6 +9,7 @@ typedef struct {
     int min;
     int max;
     bool cheat;
+    bool hard;
 } config;
 
 
@@ -65,14 +66,24 @@ int game(config cfg) {
         } else {
             rnd = rand() % (cfg.max - cfg.min + 1) + cfg.min;
         }
-        
         if (num == rnd) {
-            printf("Game over!\n");
-            scr=0;
-            printf("Your score is reset!\n");
-        }else{
-            scr++;
-            printf("Your score is %d!\n", scr);
+            if (cfg.hard) {
+                scr++;
+                printf("Your score is %d!\n", scr);
+            } else {
+                printf("Game over!\n");
+                scr=0;
+                printf("Your score is reset!\n");
+            }
+        } else {
+            if (cfg.hard) {
+                printf("Game over!\n");
+                scr=0;
+                printf("Your score is reset!\n");
+            } else {
+                scr++;
+                printf("Your score is %d!\n", scr);
+            }
         }
 
     }
@@ -83,7 +94,8 @@ int main(int argc, char *argv[]){
     config cfg = {
         .min = 1,
         .max = 3,
-        .cheat = false
+        .cheat = false,
+        .hard = false
     };
 
         for (int i = 1; i < argc; i++) {
@@ -93,6 +105,8 @@ int main(int argc, char *argv[]){
             cfg.min = atoi(argv[i+1]);
             cfg.max = atoi(argv[i+2]);
             i += 2;
+        } else if (strcmp(argv[i], "--hard") == 0) {
+            cfg.hard = true;
         }
     }
 
