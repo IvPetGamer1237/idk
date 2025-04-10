@@ -5,19 +5,33 @@
 #include <ctype.h>
 #include <stdbool.h>
 
+typedef struct {
+    int min;
+    int max;
+    bool cheat;
+} config;
+
+
 int start(void) {
     printf("write 'q' or 'exit' for exit\n\n");
     return 0;
 }
-int game(void) {
-    srand(time(0));
-    char in[11];
-    int num, rnd;
-    int scr=0;
+int game(config cfg) {
+    if (cfg.cheat) {
+        printf("Cheater!\n");
+    } else {
+        srand(time(0));
+    }
+    char in[256];
+    int num = 0, scr = 0, rnd = 0;
 
     while(true) {
-        printf("%d choose (1-3): ", scr);
-        scanf("%10s", in);
+        printf("%d choose (%d-%d): ", scr, cfg.min, cfg.max);
+        if (fgets(in, sizeof(in), stdin) == NULL) {
+            printf("Error reading input\n");
+        }
+
+        in[strcspn(in, "\n")] = '\0';
 
         if (strcmp(in, "q") == 0 || strcmp(in, "exit") == 0) {
             printf("exit\n");
@@ -37,12 +51,15 @@ int game(void) {
             continue;
         }
 
-        if (num < 1 || num > 3) {
+        if (num < cfg.min || num > cfg.max) {
             printf("Value out of range!\n");
             continue;
         }
 
-        rnd = rand() % 3 + 1;
+        if (cfg.cheat) {
+        } else {
+            rnd = rand() % (cfg.max - cfg.min + 1) + cfg.min;
+        }
         
         if (num == rnd) {
             printf("Game over!\n");
@@ -57,8 +74,24 @@ int game(void) {
     return 0;
 }
 
-int main(void){
+int main(int argc, char *argv[]){
+    config cfg = {
+        .min = 1,
+        .max = 3,
+        .cheat = false
+    };
+
+        for (int i = 1; i < argc; i++) {
+        if (strcmp(argv[i], "--cheat") == 0) {
+            cfg.cheat = true;
+        } else if (strcmp(argv[i], "--range") == 0 && i + 2 < argc) {
+            cfg.min = atoi(argv[i+1]);
+            cfg.max = atoi(argv[i+2]);
+            i += 2;
+        }
+    }
+
     start();
-    game();
+    game(cfg);
     return 0;
 }
