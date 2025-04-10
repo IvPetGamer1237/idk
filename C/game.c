@@ -43,8 +43,13 @@ int game(config cfg) {
         }
         if (strcmp(in, "segfault") == 0) {
             printf("You found a secret!\n");
-            int *ptr = NULL;
-            *ptr = 1;
+            printf("For segfault write\n\n\n"
+            "int main() {\n"
+            "   int *i = NULL;\n"
+            "   *i = 1;\n"
+            "}\n\n\n"
+            "in file with the '.c' exitntion and compile it\n");
+            break;
         }
         if (sscanf(in, "%d", &num) != 1) {
             printf("Input is not a number or 'q'\\'exit' or 'bugreport'\n");
