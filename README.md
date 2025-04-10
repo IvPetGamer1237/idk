@@ -1,5 +1,5 @@
 # README.md in my repository named `idk`
-## this is a testing scripts
+## this my projects
 ### about C/graphical.c
 
 this is just a gui program written on C using gtk 3
