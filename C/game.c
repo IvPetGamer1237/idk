@@ -49,7 +49,7 @@ int game(config cfg) {
             "   int *i = NULL;\n"
             "   *i = 1;\n"
             "}\n\n\n"
-            "in file with the '.c' exitntion and compile it\n");
+            "in file with the '.c' extention and compile it\n");
             break;
         }
         if (sscanf(in, "%d", &num) != 1) {
