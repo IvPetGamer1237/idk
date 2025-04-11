@@ -1,13 +1,20 @@
 #!/usr/bin/bash
-echo -n "fakeshell user:"
-read -er user
-echo -n "fakeshell hostname:"
-read -er host
-clear
-for (( ; ; ))
+read -ep "fakeshell user: " user
+read -ep "fakeshell hostname: " host
+
+while true
 do
-	dir=$(pwd) 
-	echo -n "[$user@$host $dir]\$ "
-	read -er command
-	$command
+    if [[ $(pwd) == $HOME ]]
+    then
+        dir="~"
+    else
+	    dir=$(basename $(pwd))
+    fi
+	read -ep "[$user@$host $dir]\$ " command
+	if $command 
+    then
+        continue
+    else
+        echo "fakeshell: $command: command not found"
+    fi
 done
