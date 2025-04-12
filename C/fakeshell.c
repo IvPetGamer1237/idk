@@ -11,51 +11,19 @@ void remove_newline(char *str) {
     }
 }
 
-int fakeshell(void) {
-    char command[256];
-    char dir[256];
-    char user[256];
-    char host[256];
-
-    printf("C fakeshell user: ");
-    if (fgets(user, sizeof(user), stdin) == NULL) {
-        printf("Error reading input\n");
+int fakeshell(int argc, char *argv[]) {
+    if (argc < 2) {
+        printf("Error: there is no arguments\n");
         return 1;
     }
-    remove_newline(user);
 
-    printf("C fakeshell host: ");
-    if (fgets(host, sizeof(host), stdin) == NULL) {
-        printf("Error reading input\n");
-        return 1;
-    }
-    remove_newline(host);
-
-    while (true) {
-        if (getcwd(dir, sizeof(dir)) == NULL) {
-            perror("getcwd() error");
-            strcpy(dir, "?");
-        }
-        
-        printf("%s@%s:%s$ ", user, host, dir);
-        
-        if (fgets(command, sizeof(command), stdin) == NULL) {
-            printf("\n");
-            break;
-        }
-        
-        remove_newline(command);
-        
-        if (strcmp(command, "exit") == 0) {
-            break;
-        }
-        
-        system(command);
+    for (int i = 1; i < argc; i++) {
+        system(argv[i]);
     }
     
     return 0;
 }
 
-int main(void) {
-    return fakeshell();
+int main(int argc, char *argv[]) {
+    return fakeshell(argc, argv);
 }
