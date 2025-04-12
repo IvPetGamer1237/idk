@@ -15,6 +15,16 @@ else score reset
 Make sure to report any bugs to /dev/null  
 
 ---
+### about C/fakeshell.c
+it is a small program that runs another program passed by a command line argument  
+example: `./fakeshell ls`
+
+---
+### about C/fakeshell.c
+this script asks your `username` and `hostname`  
+and executes the commands received from stdin
+
+---
 ### about bashscripts/fakeshell.sh
 this is a very simple bash script  
 this script asks for your `username` and `hostname`, and then simulates bash.  
