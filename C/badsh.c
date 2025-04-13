@@ -50,7 +50,26 @@ int fakeshell(void) {
             break;
         }
         
-        system(command);
+        char *cmd = strtok(command, " ");
+        char *arg = strtok(NULL, " ");
+
+        if (cmd != NULL) {
+            if (strcmp(cmd, "cd") == 0) {
+                char *path = arg;
+                if (path == NULL) {
+                    path = getenv("HOME");
+                    if (path == NULL) {
+                        fprintf(stderr, "cd: No directory specified and HOME not set\n");
+                        continue;
+                    }
+                }
+                if (chdir(path) != 0) {
+                    perror("cd failed");
+                }
+            } else {
+                system(command);
+            }
+        }
     }
     
     return 0;
