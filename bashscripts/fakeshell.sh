@@ -1,16 +1,16 @@
 #!/usr/bin/bash
-read -ep "fakeshell user: " user
-read -ep "fakeshell hostname: " host
+read -rep "fakeshell user: " user
+read -rep "fakeshell hostname: " host
 
 while true
 do
-    if [[ $(pwd) == $HOME ]]
+    if [[ $(pwd) == "$HOME" ]]
     then
         dir="~"
     else
-	    dir=$(basename $(pwd))
+	    dir=$(basename "$(pwd)")
     fi
-	read -ep "[$user@$host $dir]\$ " command
+	read -rep "[$user@$host $dir]\$ " command
 	if $command 
     then
         continue
