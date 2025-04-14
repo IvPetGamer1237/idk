@@ -20,7 +20,7 @@ it is a small program that runs another program passed by a command line argumen
 example: `./fakeshell ls`
 
 ---
-### about C/fakeshell.c
+### about C/badsh.c
 this script asks your `username` and `hostname`  
 and executes the commands received from stdin
 
