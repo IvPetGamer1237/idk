@@ -1,5 +1,7 @@
 # README.md in my repository named `idk`
+
 ## this my projects
+
 ### about C/game.c
 
 this is a game  
