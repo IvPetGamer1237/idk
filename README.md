@@ -21,7 +21,8 @@ Make sure to report any bugs to /dev/null
 
 ### about C/fakeshell.c
 
-it is a small program that runs another program passed by a command line argument  
+it is a small program that runs  
+another program passed by a command line argument  
 example: `./fakeshell ls`
 
 ---
