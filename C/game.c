@@ -3,6 +3,7 @@
 #include <time.h>
 #include <string.h>
 #include <stdbool.h>
+#include <getopt.h>
 
 typedef struct {
     int min;
@@ -11,11 +12,19 @@ typedef struct {
     bool hard;
 } config;
 
-
 int start(void) {
     printf("write 'q' or 'exit' for exit\n\n");
     return 0;
 }
+
+int help(void) {
+    printf("Usage:\n");
+    printf("    -c, --cheat     Turn on cheat mode (disables random)\n");
+    printf("    -H, --hard      Turn on hard mode (incompatible with --cheat)\n");
+    printf("    -r X-Y, --range X-Y Set custom max and min number\n");
+    return 0;
+}
+
 int game(config cfg) {
     if (cfg.min > cfg.max) {
         printf("bad range\n");
@@ -71,7 +80,7 @@ int game(config cfg) {
             continue;
         }
 
-        if (! cfg.cheat) {
+        if (!cfg.cheat) {
             rnd = rand() % (cfg.max - cfg.min + 1) + cfg.min;
         }
 
@@ -81,25 +90,24 @@ int game(config cfg) {
                 printf("Your score is %d!\n", scr);
             } else {
                 printf("Game over!\n");
-                scr=0;
+                scr = 0;
                 printf("Your score is reset!\n");
             }
         } else {
             if (cfg.hard) {
                 printf("Game over!\n");
-                scr=0;
+                scr = 0;
                 printf("Your score is reset!\n");
             } else {
                 scr++;
                 printf("Your score is %d!\n", scr);
             }
         }
-
     }
     return 0;
 }
 
-int main(int argc, char *argv[]){
+int main(int argc, char *argv[]) {
     config cfg = {
         .min = 1,
         .max = 3,
@@ -107,15 +115,38 @@ int main(int argc, char *argv[]){
         .hard = false
     };
 
-        for (int i = 1; i < argc; i++) {
-        if (strcmp(argv[i], "--cheat") == 0) {
-            cfg.cheat = true;
-        } else if (strcmp(argv[i], "--range") == 0 && i + 2 < argc) {
-            cfg.min = atoi(argv[i+1]);
-            cfg.max = atoi(argv[i+2]);
-            i += 2;
-        } else if (strcmp(argv[i], "--hard") == 0) {
-            cfg.hard = true;
+    int opt;
+    static struct option long_options[] = {
+        {"cheat", no_argument, 0, 'c'},
+        {"range", required_argument, 0, 'r'},
+        {"hard", no_argument, 0, 'H'},
+        {"help", no_argument, 0, 'h'},
+        {0, 0, 0, 0}
+    };
+
+    while ((opt = getopt_long(argc, argv, "cHr:h", long_options, NULL)) != -1) {
+        switch (opt) {
+            case 'c':
+                cfg.cheat = true;
+                break;
+            case 'H':
+                cfg.hard = true;
+                break;
+            case 'r':
+                if (sscanf(optarg, "%d-%d", &cfg.min, &cfg.max) != 2) {
+                    fprintf(stderr, "Invalid range format. Use X-Y\n");
+                    fprintf(stderr, "Example: %s -r 1-3\n", argv[0]);
+                    return 1;
+                }
+                break;
+            case 'h':
+                help();
+                return 0;
+            case '?':
+                return 1;
+            default:
+                fprintf(stderr, "Unknown error\n");
+                return 1;
         }
     }
 
