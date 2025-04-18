@@ -28,7 +28,8 @@ int game(config cfg) {
     while(true) {
         printf("%d choose (%d-%d): ", scr, cfg.min, cfg.max);
         if (fgets(in, sizeof(in), stdin) == NULL) {
-            printf("Error reading input\n");
+            printf("EOF\n");
+            break;
         }
 
         in[strcspn(in, "\n")] = '\0';
