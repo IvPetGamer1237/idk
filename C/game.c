@@ -17,11 +17,17 @@ int start(void) {
     return 0;
 }
 int game(config cfg) {
+    if (cfg.min > cfg.max) {
+        printf("bad range\n");
+        return 1;
+    }
+
     if (cfg.cheat) {
         printf("Cheater!\n");
     } else {
         srand(time(0));
     }
+
     char in[256];
     int num = 0, scr = 0, rnd = 0;
 
@@ -38,10 +44,12 @@ int game(config cfg) {
             printf("exit\n");
             break;
         }
+
         if (strcmp(in, "bugreport") == 0) {
             printf("Make sure to report any bugs to /dev/null\n");
             continue;
         }
+
         if (strcmp(in, "segfault") == 0) {
             printf("You found a secret!\n");
             printf("For segfault write\n\n\n"
@@ -52,6 +60,7 @@ int game(config cfg) {
             "in file with the '.c' extention and compile it\n");
             break;
         }
+
         if (sscanf(in, "%d", &num) != 1) {
             printf("Input is not a number or 'q'\\'exit' or 'bugreport'\n");
             continue;
@@ -62,10 +71,10 @@ int game(config cfg) {
             continue;
         }
 
-        if (cfg.cheat) {
-        } else {
+        if (! cfg.cheat) {
             rnd = rand() % (cfg.max - cfg.min + 1) + cfg.min;
         }
+
         if (num == rnd) {
             if (cfg.hard) {
                 scr++;
