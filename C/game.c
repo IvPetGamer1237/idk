@@ -1,5 +1,5 @@
-#include <stdio.h>      // standart input/output
-#include <stdlib.h>     // standart library (used for rand in this code)
+#include <stdio.h>      // standard input/output
+#include <stdlib.h>     // standard library (used for rand in this code)
 #include <time.h>       // used for initialization RNG
 #include <string.h>     // for working with strings
 #include <stdbool.h>    // for boolean true/false values
