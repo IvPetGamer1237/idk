@@ -37,7 +37,7 @@ int game(config cfg) {
     if (cfg.cheat) {
         if (cfg.hard) {
             // check for hard and cheat
-            printf("hard incompatible witch cheat\n");
+            printf("hard incompatible with cheat\n");
             return 1;
         }
         printf("Cheater!\n");       // if cheater mode, then output "Cheater!"
