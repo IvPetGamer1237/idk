@@ -35,6 +35,11 @@ int game(config cfg) {
     }
 
     if (cfg.cheat) {
+        if (cfg.hard) {
+            // check for hard and cheat
+            printf("hard incompatible witch cheat\n");
+            return 1;
+        }
         printf("Cheater!\n");       // if cheater mode, then output "Cheater!"
     } else {
         srand(time(0));             // else initializing RNG 
