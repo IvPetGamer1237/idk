@@ -96,9 +96,11 @@ void game
       printf
         ("Make sure to report any bugs to ");
 #if defined(__DOS__) || defined(_WIN32)
-      printf("NUL\n");
+      printf
+        ("NUL\n");
 #else
-      printf("/dev/null\n");
+      printf
+        ("/dev/null\n");
 #endif
 
       continue;
