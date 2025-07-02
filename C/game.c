@@ -115,7 +115,7 @@ void game
         ("You found a secret!\n");
 #if defined(__DOS__)
       printf
-        ("Nothing here!\n);
+        ("Nothing here!\n");
 #else
       raise
         (SIGSEGV);
