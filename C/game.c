@@ -94,7 +94,13 @@ void game
       (strcmp(in, "bugreport") == 0)
       {
       printf
-        ("Make sure to report any bugs to /dev/null\n");
+        ("Make sure to report any bugs to ");
+#if defined(__DOS__) || defined(_WIN32)
+      printf("NUL\n");
+#else
+      printf("/dev/null\n");
+#endif
+
       continue;
     }
 
