@@ -4,7 +4,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#if !defined(__DOS__)
 #include <signal.h>
+#endif
 
 typedef struct
 {
@@ -111,8 +113,13 @@ void game
       {
       printf
         ("You found a secret!\n");
+#if defined(__DOS__)
+      printf
+        ("Nothing here!\n);
+#else
       raise
         (SIGSEGV);
+#endif
       break;
     }
 
